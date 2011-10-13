@@ -1,12 +1,11 @@
-CPSF chalanges
-================
+# CPSF chalanges
 
-01:takuro
---------
-*** usage
-- decode
+## 01:takuro
+
+### usage
+* decode  
 $ ./binary_converter.rb -d
-- encode
+* encode  
 $ ./binary_converter.rb -e
 
 Redirecting stdin is also available.
