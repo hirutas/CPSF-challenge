@@ -6,14 +6,32 @@
     お絵かき
   </title>
   <link type="text/css" rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="css/colorpicker.css" />
   <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/colorpicker.js"></script>
 </head>
 <body>
-  <h1>
-    お絵かき
-  </h1>
-  <canvas id="main" width="600" height="400"></canvas>
-  <div class="tools"></div>
+  <header>
+    <h1>お絵かきボード</h1>
+  </header>
+  <div class="wrapper">
+    <div class="canvas">
+      <canvas id="main" width="500" height="500"></canvas>
+    </div>
+    <div class="tools">
+      <div id="colorPicker"></div>
+      <div class="selectWidth">
+        <div id="width1"><img src="images/1.gif" alt="1" /></div>
+        <div id="width3"><img src="images/3.gif" alt="3" /></div>
+        <div id="width5"><img src="images/5.gif" alt="5" /></div>
+      </div>
+      <div class="share">
+        
+      </div>
+    </div>
+  </div>
+
+  <footer>by @hiru_ecn</footer>
 </body>
 </html>

@@ -1,5 +1,89 @@
+div.wraper {
+	float: left;
+}
+
+div.canvas {
+	float: left;
+	margin: 0 10px 10px 0;
+}
+
+div.tools {
+	float: left;
+}
+
 canvas#main {
-	height: 400px;
-	width: 600px;
+	height: 500px;
+	width: 500px;
 	border: 1px solid #bbb;
+	margin: 4px;
+}
+
+div.selectWidth {
+	float: left;
+	margin: 0 0 10px 0;
+	padding: 4px;
+}
+
+div.selectWidth > div {
+	width: 30px;
+	height: 30px;
+	margin: 0 10px 0 0;
+	border: solid 1px #bbb;
+	float: left;
+}
+
+div#width1 {
+	border: solid 1px #ff0000;
+}
+
+div.share {
+	clear: both;
+}
+
+footer {
+	clear: both;
+	border-top: 1px solid #bbb;
+	padding: 4px;
+}
+
+/* color picker */
+div#colorPicker {
+	margin: 0 0 10px 0;
+}
+
+#colorPicker .colorpicker {
+	background-image: url(../images/custom_background.png);
+}
+#colorPicker .colorpicker_hue div {
+	background-image: url(../images/custom_indic.gif);
+}
+#colorPicker .colorpicker_hex {
+	background-image: url(../images/custom_hex.png);
+}
+#colorPicker .colorpicker_rgb_r {
+	background-image: url(../images/custom_rgb_r.png);
+}
+#colorPicker .colorpicker_rgb_g {
+	background-image: url(../images/custom_rgb_g.png);
+}
+#colorPicker .colorpicker_rgb_b {
+	background-image: url(../images/custom_rgb_b.png);
+}
+#colorPicker .colorpicker_hsb_s {
+	background-image: url(../images/custom_hsb_s.png);
+	display: none;
+}
+#colorPicker .colorpicker_hsb_h {
+	background-image: url(../images/custom_hsb_h.png);
+	display: none;
+}
+#colorPicker .colorpicker_hsb_b {
+	background-image: url(../images/custom_hsb_b.png);
+	display: none;
+}
+#colorPicker .colorpicker_submit {
+	background-image: url(../images/custom_submit.png);
+}
+#colorPicker .colorpicker input {
+	color: #778398;
 }
