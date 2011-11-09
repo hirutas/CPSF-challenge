@@ -1,3 +1,8 @@
+h2 {
+	margin: 0 0 10px 0;
+	font-size: 18px;
+}
+
 div.wraper {
 	float: left;
 }
@@ -38,12 +43,21 @@ div#width1 {
 
 div.share {
 	clear: both;
+	margin: 0 0 10px 0;
 }
 
-footer {
+div.works {
 	clear: both;
-	border-top: 1px solid #bbb;
-	padding: 4px;
+	float: left;
+	width: 356px;
+}
+
+div.work {
+	float: left;
+	width: 60px;
+	height: 60px;
+	margin: 0 9px 5px 0;
+	border: solid 1px #bbb;
 }
 
 /* color picker */

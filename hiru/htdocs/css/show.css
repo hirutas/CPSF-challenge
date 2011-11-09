@@ -1,0 +1,12 @@
+div#main {
+	margin: 0 0 10px 0;
+}
+
+div#main img {
+	border: solid 1px #bbb;
+	margin: 4px;
+}
+
+div#social {
+	margin: 0 0 10px 0;
+}

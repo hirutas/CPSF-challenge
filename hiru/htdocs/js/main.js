@@ -9,15 +9,18 @@ new function(){
 		jqBody: null,
 		jqCanvas: null,
 		domCanvas: null,
+		jqWorks: null,
 		ctx: null,
 		isMouseDown: false,
+		works: [],
 		// public functions
-		initialize: function(jqb, jqc){
+		initialize: function(jqb, jqc, jqw){
 			// set canvas objects
 			this.jqBody = jqb;
 			this.jqCanvas = jqc;
 			this.domCanvas = this.jqCanvas.get(0);
 			this.ctx = this.domCanvas.getContext('2d');
+			this.jqWorks = jqw;
 			// set mouse events
 			this.jqBody.mousedown(function(e){
 				myCanvasObj.mouseX = e.pageX - this.offsetLeft; // コールバック関数内ではthisは使えない
@@ -44,6 +47,7 @@ new function(){
 				myCanvasObj.mouseY = e.pageY - this.offsetTop;
 				myCanvasObj.drawLine();
 			});
+			myCanvasObj.refleshWorks();
 			console.log('initialized');
 		},
 		drawLine: function(){
@@ -69,20 +73,42 @@ new function(){
 					url: 'api/save.php',
 					data: {'url': img.src},
 					success: function(data){
-						alert('save successed');
+						alert('保存しました｡');
+						myCanvasObj.refleshWorks();
 					},
 					error: function(data){
 						alert('error: ' + data);
 					}
 				});
 			}
+		},
+		refleshWorks: function(){
+			$.ajax({
+				type: 'get',
+				url: 'api/getlist.php',
+				dataType: 'json',
+				success: function(data){
+					this.works = data;
+					console.log(this.works);
+					myCanvasObj.jqWorks.empty();
+					$.each(this.works, function(){
+						console.log(this);
+						var work = $('<div>').addClass('work').append(
+							$('<a>').attr({'href': 'show.php?id=' + this}).append(
+								$('<img>').attr({'src': 'uploads/' + this + '.png', 'width': 60, 'height': 60})
+							)
+						);
+						myCanvasObj.jqWorks.append(work);
+					});
+				}
+			});
 		}
 	};
 } // コンストラクタを即時実行する
 
 // onLoad
 $(function(){
-	myCanvasObj.initialize($('body'), $('canvas#main'));
+	myCanvasObj.initialize($('body'), $('canvas#main'), $('div.works'));
 	$('#colorPicker').ColorPicker({
 		flat: true,
 		color: '#000000',

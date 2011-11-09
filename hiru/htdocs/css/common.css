@@ -1,0 +1,16 @@
+header h1 {
+	margin: 10px 0 10px 0;
+	font-size: 25px;
+}
+
+footer {
+	clear: both;
+	border-top: 1px solid #bbb;
+	padding: 4px;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+	color: #000085;
+	font-style: normal;
+	text-decoration: none;
+}
