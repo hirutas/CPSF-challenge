@@ -64,7 +64,17 @@ new function(){
 			var type = 'image/png';
 			img.src = this.domCanvas.toDataURL(type);
 			img.onload = function(){
-				location.href = img.src;
+				$.ajax({
+					type: 'post',
+					url: 'api/save.php',
+					data: {'url': img.src},
+					success: function(data){
+						alert('save successed');
+					},
+					error: function(data){
+						alert('error: ' + data);
+					}
+				});
 			}
 		}
 	};
@@ -102,6 +112,8 @@ $(function(){
 		resetSelectWidth();
 		$(this).css('border', 'solid 1px #ff0000');
 	});
-	
+	$('#save').click(function(){
+		myCanvasObj.saveImage();
+	});
 });
 
