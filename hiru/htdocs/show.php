@@ -23,7 +23,7 @@ if(array_key_exists('id', $_GET)){
 </head>
 <body>
 	<header>
-		<h1><a href="/">お絵かきCanvas</a></h1>
+		<h1><a href="/oekaki">お絵かきCanvas</a></h1>
 	</header>
 	<div id="main">
 	<?php if($url): ?>
