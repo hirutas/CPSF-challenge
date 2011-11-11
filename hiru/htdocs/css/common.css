@@ -3,6 +3,10 @@ header h1 {
 	font-size: 25px;
 }
 
+h2 {
+	font-size: 20px;
+}
+
 footer {
 	clear: both;
 	border-top: 1px solid #bbb;
