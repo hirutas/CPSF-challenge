@@ -22,6 +22,14 @@ if(array_key_exists('id', $_GET)){
 	<link type="text/css" rel="stylesheet" href="css/show.css" />
 </head>
 <body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+  	var js, fjs = d.getElementsByTagName(s)[0];
+  	if (d.getElementById(id)) {return;}
+  	js = d.createElement(s); js.id = id;
+  	js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=198239126876018";
+  	fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 	<header>
 		<h1><a href="/oekaki">お絵かきCanvas</a></h1>
 	</header>
@@ -34,9 +42,15 @@ if(array_key_exists('id', $_GET)){
 	</div>
 	<div id="social">
 	<?php if($url): ?>
-	<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="hiru_ecn" data-lang="ja">ツイート</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+	<div class="tweet">
+		<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="hiru_ecn" data-lang="ja">ツイート</a>
+	</div>
+	<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+	<div class="fb-like" data-href="http://aoi.ht.sfc.keio.ac.jp/oekaki/show.php?id=<?php echo $path_clean ?>" data-send="false" data-width="450" data-show-faces="true"></div>
 	<?php endif; ?>
-	<h2>&lt;&lt; <a href="/oekaki">お絵かきする</a></h2>
+	</div>
+	<div class="back">
+		<h2>&lt;&lt; <a href="/oekaki">お絵かきする</a></h2>
 	</div>
   <footer>
     <a href="http://www.ht.sfc.keio.ac.jp/cpsf/" target="_blank">CPSF</a> - Cyber-Physical Space Family in Keio Univ. Hide Tokuda Lab.<br />

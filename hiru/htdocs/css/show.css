@@ -9,4 +9,13 @@ div#main img {
 
 div#social {
 	margin: 0 0 10px 0;
+	float: left;
+}
+
+div#social > div {
+	float: left;
+}
+
+div.back {
+	clear: both;
 }
