@@ -4,41 +4,56 @@
 #include <pcap.h>
 #include <time.h>
 #include <netinet/if_ether.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include "headers.h"
 #define BUFSIZE 256
 #define FILTER_EXP_SIZE 256
+#define SIZE_ETHERNET 14
 
 void callback(u_char *useless, const struct pcap_pkthdr* header, const u_char* packet){
   int i;
-  struct ether_header *eptr; /* net/ethernet.h */
+  const struct struct_ethernet *eh;        
+  const struct struct_ip *ip;
+  const struct struct_tcp *tcp;
   u_char *ptr; /* printing out hardware header info */
+  u_int size_ip;
+  char ip_src[20], ip_dst[20];
 
-  // Received time
-//  printf("%p\n", ((const time_t*)header->ts.tv_sec)); /* error on Mac OS X 10.7 */
-  
+  // Cast
+  eh = (struct struct_ethernet *)(packet);
+  ip = (struct struct_ip *)(packet + SIZE_ETHERNET);
+  size_ip = IP_HL(ip) * 4;
+  tcp = (struct struct_tcp *)(packet + SIZE_ETHERNET + size_ip);
+
   // Check packet type
-  eptr = (struct ether_header *)packet;
-  if(ntohs(eptr->ether_type) == ETHERTYPE_IP){
+  if(ntohs(eh->ether_type) == ETHERTYPE_IP){
     printf("IP ");
-  }else if(ntohs(eptr->ether_type) == ETHERTYPE_ARP){
+    // Save pointer: inet_ntoa() returns internal pointer *char
+    strcpy(ip_src, inet_ntoa(ip->ip_src));
+    strcpy(ip_dst, inet_ntoa(ip->ip_dst));
+    printf("%s.%d > %s.%d ", ip_src, tcp->th_sport, ip_dst, tcp->th_dport);
+  }else if(ntohs(eh->ether_type) == ETHERTYPE_ARP){
     printf("ARP ");
   }else{
     printf("OTHER ");
   }
 
-  // Source address
-  ptr = eptr->ether_shost;
-  i = ETHER_ADDR_LEN;
-  do{
-    printf("%s%02x",(i == ETHER_ADDR_LEN) ? "" : ":",*ptr++);
-  }while(--i > 0);
+  // Source Mac address
+  for (i = 0; i < 6; ++i) {
+    printf("%02x", (int)eh->ether_shost[i]);
+    if(i < 5){
+      printf(":");
+    }
+  }
   printf(" > ");
-
-  // Destination address
-  ptr = eptr->ether_dhost;
-  i = ETHER_ADDR_LEN;
-  do{
-    printf("%s%02x",(i == ETHER_ADDR_LEN) ? "" : ":",*ptr++);
-  }while(--i > 0);
+  // Dest Mac address
+  for (i = 0; i < 6; ++i) {
+    printf("%02x", (int)eh->ether_dhost[i]);
+    if(i < 5){
+      printf(":");
+    }
+  }
   
   // Packet length
   printf(", length %d", header->len);

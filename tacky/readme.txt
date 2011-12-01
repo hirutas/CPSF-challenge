@@ -5,7 +5,7 @@ mytcpdump - Packet capture by libpcap
 
 ** Notice: Requires root
 e.g.
- $ sudo ./mytcpdump -i en0 dst host google.com
+ $ sudo ./mytcpdump -i en0 tcp port 80
 
 
 * Refarences

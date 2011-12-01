@@ -1,6 +1,6 @@
 all: main
 
-main: main.c
+main: headers.h main.c
 	gcc -o mytcpdump main.c -lpcap
 
 clean:
